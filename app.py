@@ -37,9 +37,10 @@ class Order(db.Model):
     items = db.relationship('OrderItem', cascade='all, delete-orphan')
     def total(self): return sum(item.subtotal() for item in self.items)
 
-@app.before_first_request
+@app.before_request
 def create_tables():
     db.create_all()
+
 
 @app.route('/')
 def index():
@@ -116,5 +117,8 @@ def order_delete(order_id):
         if prod: prod.stock+=item.quantity
     db.session.delete(order); db.session.commit(); flash('Pedido removido e estoque restaurado', 'success'); return redirect(url_for('orders'))
 
-if __name__=='__main__':
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
+
