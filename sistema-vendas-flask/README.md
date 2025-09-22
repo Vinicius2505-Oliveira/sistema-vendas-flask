@@ -38,5 +38,3 @@ python app.py
 
 Acesse: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## Para colocar no LinkedIn
-> Desenvolvi um sistema de vendas completo com **Flask**, **SQLite** e **Bootstrap**, incluindo CRUD de produtos, clientes e pedidos, controle de estoque e interface web responsiva. O projeto demonstra habilidades em **Python (POO)**, **desenvolvimento web** e **banco de dados**.

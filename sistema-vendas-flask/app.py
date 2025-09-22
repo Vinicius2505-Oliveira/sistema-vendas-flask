@@ -48,7 +48,7 @@ def index():
                            clients_count=Client.query.count(),
                            orders_count=Order.query.count())
 
-# Products CRUD
+# products CRUD
 @app.route('/products')
 def products(): return render_template('products.html', products=Product.query.all())
 @app.route('/products/new', methods=['GET','POST'])
@@ -68,7 +68,7 @@ def product_edit(product_id):
 def product_delete(product_id):
     p=Product.query.get_or_404(product_id); db.session.delete(p); db.session.commit(); flash('Removido','success'); return redirect(url_for('products'))
 
-# Clients CRUD
+# clients CRUD
 @app.route('/clients')
 def clients(): return render_template('clients.html', clients=Client.query.all())
 @app.route('/clients/new', methods=['GET','POST'])
@@ -88,7 +88,7 @@ def client_edit(client_id):
 def client_delete(client_id):
     c=Client.query.get_or_404(client_id); db.session.delete(c); db.session.commit(); flash('Removido','success'); return redirect(url_for('clients'))
 
-# Orders
+# orders
 @app.route('/orders')
 def orders(): return render_template('orders.html', orders=Order.query.order_by(Order.created_at.desc()).all())
 @app.route('/orders/new', methods=['GET','POST'])
