@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Produtos</h5>
+        <p class="card-text display-6">{{ products_count }}</p>
+        <a href="{{ url_for('products') }}" class="btn btn-primary">Ver produtos</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Clientes</h5>
+        <p class="card-text display-6">{{ clients_count }}</p>
+        <a href="{{ url_for('clients') }}" class="btn btn-primary">Ver clientes</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Pedidos</h5>
+        <p class="card-text display-6">{{ orders_count }}</p>
+        <a href="{{ url_for('orders') }}" class="btn btn-primary">Ver pedidos</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

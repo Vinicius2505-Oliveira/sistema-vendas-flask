@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Clientes</h3>
+  <a class="btn btn-success" href="{{ url_for('client_new') }}">Novo Cliente</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>Nome</th><th>Email</th><th>Ações</th></tr></thead>
+  <tbody>
+    {% for c in clients %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{{ c.email or '-' }}</td>
+      <td>
+        <a class="btn btn-sm btn-primary" href="{{ url_for('client_edit', client_id=c.id) }}">Editar</a>
+        <form method="post" action="{{ url_for('client_delete', client_id=c.id) }}" style="display:inline-block" onsubmit="return confirm('Remover cliente?')">
+          <button class="btn btn-sm btn-danger">Remover</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

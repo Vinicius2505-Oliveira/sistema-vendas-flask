@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ 'Editar' if client else 'Novo' }} Cliente</h3>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Nome</label>
+    <input name="name" class="form-control" value="{{ client.name if client else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input name="email" type="email" class="form-control" value="{{ client.email if client else '' }}">
+  </div>
+  <button class="btn btn-primary">Salvar</button>
+  <a class="btn btn-secondary" href="{{ url_for('clients') }}">Cancelar</a>
+</form>
+{% endblock %}

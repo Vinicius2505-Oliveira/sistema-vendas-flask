@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ 'Editar' if product else 'Novo' }} Produto</h3>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Nome</label>
+    <input name="name" class="form-control" value="{{ product.name if product else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Preço</label>
+    <input name="price" type="number" step="0.01" class="form-control" value="{{ product.price if product else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Estoque</label>
+    <input name="stock" type="number" class="form-control" value="{{ product.stock if product else 0 }}" required>
+  </div>
+  <button class="btn btn-primary">Salvar</button>
+  <a class="btn btn-secondary" href="{{ url_for('products') }}">Cancelar</a>
+</form>
+{% endblock %}

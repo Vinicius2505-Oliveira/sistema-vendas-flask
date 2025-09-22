@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Pedido #{{ order.id }}</h3>
+<p><strong>Cliente:</strong> {{ order.client.name }}</p>
+<p><strong>Data:</strong> {{ order.created_at.strftime('%d/%m/%Y %H:%M') }}</p>
+<table class="table">
+  <thead><tr><th>Produto</th><th>Preço</th><th>Quantidade</th><th>Subtotal</th></tr></thead>
+  <tbody>
+    {% for item in order.items %}
+    <tr>
+      <td>{{ item.product.name }}</td>
+      <td>R$ {{ '%.2f'|format(item.price_at_sale) }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>R$ {{ '%.2f'|format(item.subtotal()) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h4>Total: R$ {{ '%.2f'|format(order.total()) }}</h4>
+<a class="btn btn-secondary" href="{{ url_for('orders') }}">Voltar</a>
+{% endblock %}

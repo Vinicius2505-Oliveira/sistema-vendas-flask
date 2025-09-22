@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Novo Pedido</h3>
+{% if not clients %}
+  <div class="alert alert-warning">Crie um cliente antes de criar pedidos.</div>
+{% endif %}
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Cliente</label>
+    <select name="client_id" class="form-select" required>
+      <option value="">-- Selecionar --</option>
+      {% for c in clients %}
+        <option value="{{ c.id }}">{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <h5>Produtos</h5>
+  {% if not products %}
+    <div class="alert alert-warning">Nenhum produto com estoque disponível.</div>
+  {% else %}
+    <table class="table">
+      <thead><tr><th>Produto</th><th>Preço</th><th>Estoque</th><th>Quantidade</th></tr></thead>
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <td>{{ p.name }}</td>
+          <td>R$ {{ '%.2f'|format(p.price) }}</td>
+          <td>{{ p.stock }}</td>
+          <td><input type="number" min="0" max="{{ p.stock }}" name="product_{{ p.id }}" class="form-control" value="0"></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+  <button class="btn btn-primary">Criar Pedido</button>
+  <a class="btn btn-secondary" href="{{ url_for('orders') }}">Cancelar</a>
+</form>
+{% endblock %}
